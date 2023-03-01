@@ -2,6 +2,7 @@ package org.example;
 import com.google.gson.*;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,7 +76,7 @@ public class Basket {
 
     }
 
-    public static Basket loadFromTxtFile(File textFile) throws IOException {
+    public static Basket loadFromTxtFile(File textFile) throws IOException, ParseException {
         Scanner sc = new Scanner(textFile);
         List<Product> products1 = new ArrayList<>();
         String name;
