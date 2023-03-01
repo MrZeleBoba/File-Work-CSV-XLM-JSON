@@ -1,4 +1,5 @@
 package org.example;
+
 import com.google.gson.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -35,7 +36,7 @@ public class Main {
     private static boolean logSaveEnable = false;
     private static String logFileName = "";
 
-    public static void main(String[] args) throws IOException, ParseException,ParserConfigurationException, SAXException {
+    public static void main(String[] args) throws IOException, ParseException, ParserConfigurationException, SAXException {
         Scanner scanner = new Scanner(System.in);
         String s;
         Basket shoppingCart = new Basket(products);
@@ -51,8 +52,6 @@ public class Main {
         var logFile = new File(logFileName);
 
 
-
-
         if (basketFileForLoad.exists() && basketLoadEnable) {
             if (basketLoadFormat == FileFormat.JSON) {
                 shoppingCart = Basket.loadFromJSON(basketFileForLoad);
@@ -60,10 +59,9 @@ public class Main {
             if (basketLoadFormat == FileFormat.TXT) {
                 shoppingCart = Basket.loadFromTxtFile(basketFileForLoad);
             }
-        }else {
+        } else {
             shoppingCart = new Basket(products);
         }
-
 
 
         while (true) {
@@ -107,6 +105,7 @@ public class Main {
 
 
     }
+
     static void loadSettings() throws ParserConfigurationException, IOException, SAXException {
         // Создается построитель документа
         DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();

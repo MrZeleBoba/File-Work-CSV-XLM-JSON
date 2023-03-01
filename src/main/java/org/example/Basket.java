@@ -1,4 +1,5 @@
 package org.example;
+
 import com.google.gson.*;
 
 import java.io.*;
@@ -67,12 +68,12 @@ public class Basket {
     }
 
     public void saveToJSON(File textFile) throws IOException {
-       try(var writer = new FileWriter(textFile);) {
-           var gson = new GsonBuilder().setPrettyPrinting().create();
-           writer.write(gson.toJson(this, Basket.class));
-       }catch (IOException e) {
-           System.out.println(Arrays.toString(e.getStackTrace()));
-       }
+        try (var writer = new FileWriter(textFile);) {
+            var gson = new GsonBuilder().setPrettyPrinting().create();
+            writer.write(gson.toJson(this, Basket.class));
+        } catch (IOException e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        }
 
     }
 
@@ -91,6 +92,7 @@ public class Basket {
         }
         return new Basket(products1.toArray(Product[]::new));
     }
+
     public static Basket loadFromJSON(File textFile) throws FileNotFoundException {
         var gson = new Gson();
         var reader = new FileReader(textFile);

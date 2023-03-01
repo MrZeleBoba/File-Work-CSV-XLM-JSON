@@ -15,12 +15,13 @@ public class ClientLog {
     public void log(int productNum, int amount) {
         log.append(String.format("%d,%d\n", productNum, amount));
     }
-    public void exportAsCSV (File txtFile) throws IOException {
-       try(var writer = new FileWriter(txtFile);) {
-           writer.write(String.valueOf(log));
-       }catch (IOException e) {
-           System.out.println(Arrays.toString(e.getStackTrace()));
-       }
+
+    public void exportAsCSV(File txtFile) throws IOException {
+        try (var writer = new FileWriter(txtFile);) {
+            writer.write(String.valueOf(log));
+        } catch (IOException e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        }
 
 
     }
