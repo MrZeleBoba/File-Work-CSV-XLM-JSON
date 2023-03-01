@@ -1,5 +1,5 @@
 package org.example;
-
+import com.google.gson.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,13 +23,17 @@ public class Main {
         Basket shoppingCart = new Basket(products);
         int selectedItem;
         int itemCount;
-        File basketFile = new File("basket.txt");
 
-        if (basketFile.exists()) {
+        File basketFile = new File("basket.txt");
+        File jsonFile = new File("basket.json");
+        File logFile = new File("log.csv");
+        ClientLog clientLog = new ClientLog();
+
+        if (jsonFile.exists()) {
             System.out.println("Загрузить корзину?<ENTER>");
 
             if (scanner.nextLine().equals("")) {
-                shoppingCart = Basket.loadFromTxtFile(basketFile);
+                shoppingCart = Basket.loadFromJSON(jsonFile);
             } else {
                 shoppingCart = new Basket(products);
 
@@ -54,7 +58,9 @@ public class Main {
                         continue;
                     }
                     shoppingCart.addToCart(selectedItem - 1, itemCount);
-                    shoppingCart.saveTxt(basketFile);
+                    //shoppingCart.saveTxt(basketFile);
+                    shoppingCart.saveToJSON(jsonFile);
+                    clientLog.log(selectedItem, itemCount);
                 } catch (NumberFormatException nfe) {
                     System.out.println("Введите 2 числа");
                 } catch (FileNotFoundException e) {
@@ -65,7 +71,7 @@ public class Main {
             }
 
         }
-
+        clientLog.exportAsCSV(logFile);
         shoppingCart.printCart();
 
 

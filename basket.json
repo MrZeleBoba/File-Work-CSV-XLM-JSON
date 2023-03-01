@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "name": "Хлеб",
+      "price": 40,
+      "inBasket": 1
+    },
+    {
+      "name": "Гречка",
+      "price": 100,
+      "inBasket": 2
+    },
+    {
+      "name": "Молоко",
+      "price": 70,
+      "inBasket": 0
+    },
+    {
+      "name": "Яблоко",
+      "price": 20,
+      "inBasket": 0
+    },
+    {
+      "name": "Тушенка",
+      "price": 150,
+      "inBasket": 0
+    },
+    {
+      "name": "Сгущенка",
+      "price": 120,
+      "inBasket": 0
+    },
+    {
+      "name": "Сахар",
+      "price": 60,
+      "inBasket": 0
+    }
+  ],
+  "sumProduct": 240
+}

@@ -1,9 +1,9 @@
 package org.example;
+import com.google.gson.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,6 +65,16 @@ public class Basket {
         }
     }
 
+    public void saveToJSON(File textFile) throws IOException {
+       try(var writer = new FileWriter(textFile);) {
+           var gson = new GsonBuilder().setPrettyPrinting().create();
+           writer.write(gson.toJson(this, Basket.class));
+       }catch (IOException e) {
+           System.out.println(Arrays.toString(e.getStackTrace()));
+       }
+
+    }
+
     public static Basket loadFromTxtFile(File textFile) throws IOException {
         Scanner sc = new Scanner(textFile);
         List<Product> products1 = new ArrayList<>();
@@ -80,5 +90,10 @@ public class Basket {
         }
         return new Basket(products1.toArray(Product[]::new));
     }
-
+    public static Basket loadFromJSON(File textFile) throws FileNotFoundException {
+        var gson = new Gson();
+        var reader = new FileReader(textFile);
+        return gson.fromJson(reader, Basket.class);
+    }
 }
+
