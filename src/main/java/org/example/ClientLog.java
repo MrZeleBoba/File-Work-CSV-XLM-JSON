@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class ClientLog {
-    StringBuilder log;
+   private StringBuilder log;
 
     public ClientLog() {
         log = new StringBuilder("productNum,amount\n");
